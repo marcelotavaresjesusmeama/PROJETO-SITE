@@ -1,0 +1,5 @@
+window.flixJsCallbacks.pageSpecific={price:function(){var
+bread=document.querySelector("#product-price")||null,crumbs=null;try{if(!!bread){crumbs=(parseFloat(bread.textContent.match(/[\.\,\d]+/).pop().replace(/\,/g,"").replace('.',''))/100).toString();return crumbs||false;}}
+catch(e){}},br:function(){try{for(i=0;i<document.querySelectorAll('script[type="application/ld+json"]').length;i++){var g=document.querySelectorAll('script[type="application/ld+json"]')[i].textContent;if(g.match(/"brand"\:.*/g)){var res=g.replace(/\n/g,'').match(/"brand"\:[^\}]*\{[^\}]+name":([^\}]+)/);if(!!res&&res.length>1){res=(res[1]).replace(/"/g,"").trim();}else{res=null;};}}
+var bread=res||null,crumbs=null;if(!!bread){crumbs=bread;return crumbs||false;}}catch(e){}}};(function(){try{if(!!window.flixJsCallbacks&&!!window.flixJsCallbacks.flixCartClick){var ticks=10;(function domTest(){if(!document.querySelector('#product-price')&&ticks){setTimeout(function(){ticks--;domTest();},5000)}
+else{window.flixJsCallbacks.flixCartClick('#product-price',2560,'br');}})();}}catch(e){}})();

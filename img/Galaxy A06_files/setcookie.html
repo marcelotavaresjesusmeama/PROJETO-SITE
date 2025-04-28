@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://tm.uol.com.br/setcookie.html?client=2017070518 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>[UOL TagManager] DynAd Track Persistence</title>
+  </head>
+  <body marginheight="0">
+    <script src="./update-persistence.js.download"></script>
+    <script>
+      window.addEventListener("message", (event) => {
+        let objetoAzul = {
+          origem: event.data.origem,
+          destino: event.data.destino,
+        };
+        localStorage.setItem("origem", objetoAzul.origem);
+        localStorage.setItem("destino", objetoAzul.destino);
+      });
+      let dataTravel = {
+        origem: "",
+        destino: "",
+      };
+      setInterval(function () {
+        dataTravel.origem = localStorage.getItem("origem");
+        dataTravel.destino = localStorage.getItem("destino");
+        window.parent.postMessage(dataTravel, "*");
+      }, 500);
+    </script>
+  
+
+</body></html>

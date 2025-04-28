@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://www.casasbahia-imagens.com.br/html/teste/iframe.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+    <title>Iframe</title>
+  <script src="./65319_1825202430.js.download" crossorigin="anonymous"></script><script src="./65257_1825232097.js.download" crossorigin="anonymous"></script><script src="./64885_1825202523.js.download" crossorigin="anonymous"></script><script src="./65226_747628217.js.download" crossorigin="anonymous"></script></head>
+  <body>
+    <h1>IFRAME - VV-DATALAYER</h1>
+    <script type="text/javascript" src="./17cc9d061fc554c062ccb36525a47a5432b262531f1d5a" async=""></script><script>
+      const domains = [
+        'https://carrinho.casasbahia.com.br',
+        'https://carrinho.casasbahia.com.br/',
+        'https://www.casasbahia.com.br',
+        'https://www.casasbahia.com.br/',
+      ];
+      window.addEventListener('message', messageHandler, false);
+      sendLocalStorageToParent();
+
+      function sendLocalStorageToParent() {
+        let localStorageCopy = [];
+        Object.keys(window.localStorage).forEach((item) => {
+          localStorageCopy[item] = JSON.parse(localStorage.getItem(item));
+        });
+        parent.postMessage(
+          { action: 'returnData', itemValue: localStorageCopy },
+          '*'
+        );
+      }
+
+      function messageHandler(event) {
+        const pattern = 'https?:\/\/([a-z0-9]+[.-]+)*casasbahia[.]com[.]br';
+        const domainRegExp = new RegExp(pattern);
+        if (!domainRegExp.test(event.origin)) return;
+        const { action, key, value } = event.data;
+        if (action == 'save') {
+          window.localStorage.setItem(key, JSON.stringify(value));
+        } else if (action == 'get') {
+          const itemValue = tryParse(window.localStorage.getItem(key));
+          event.source.postMessage(
+            {
+              action: 'returnData',
+              key,
+              itemValue,
+            },
+            '*'
+          );
+        }
+      }
+
+      function tryParse(string) {
+        try {
+          return JSON.parse(string);
+        } catch (e) {
+          return string;
+        }
+      }
+    </script>
+  
+
+<iframe style="width: 0px; height: 0px; display: none;" src="./saved_resource(10).html"></iframe></body><iframe id="v9mmg61SHCizwqVz" style="display: none;" src="./saved_resource(11).html"></iframe><div style="display: none;"></div></html>
